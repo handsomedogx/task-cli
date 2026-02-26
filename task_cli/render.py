@@ -14,16 +14,16 @@ def _render_entries(entries: list[dict[str, Any]]) -> list[str]:
 
 
 def render_list(data: dict[str, Any]) -> str:
-    lines: list[str] = ["每日任务"]
+    lines: list[str] = ["📅 每日任务"]
     lines.extend(_render_entries(data["daily"]))
     lines.append("")
-    lines.append("待办列表")
+    lines.append("📝 待办列表")
     lines.extend(_render_entries(data["todos"]))
     return "\n".join(lines)
 
 
 def render_daily(data: dict[str, Any]) -> str:
-    lines: list[str] = ["每日任务"]
+    lines: list[str] = ["📅 每日任务"]
     lines.extend(_render_entries(data["daily"]))
     return "\n".join(lines)
 

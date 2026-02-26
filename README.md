@@ -62,7 +62,7 @@ task list [--all]        # 查看每日任务 + 待办列表
 task daily [--all]       # 仅查看每日任务
 task daily add <任务名>   # 添加每日任务
 task add <任务名>         # 添加待办任务
-task done <id>           # 完成任务
+task done <id>           # 完成任务（待办会直接删除）
 task delete <id>         # 删除任务（硬删除）
 ```
 
@@ -70,6 +70,7 @@ task delete <id>         # 删除任务（硬删除）
 
 - 同一分类下不允许重名任务。
 - `task done <id>` 对每日任务只标记“今天已完成”，明天会自动恢复未完成。
+- `task done <id>` 对待办任务会“完成即删除”，不会保留已完成待办记录。
 - `task delete <id>` 为永久删除，无回收站。
 - 删除后会回收 ID。
 - 新任务优先使用全局最小可用 ID（每日 + 待办共用 ID 池）。

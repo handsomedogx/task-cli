@@ -144,15 +144,13 @@ class TaskService:
         data = self.store.load()
         today_value = _today_str(today)
 
-        for item in data["todos"]:
+        for index, item in enumerate(data["todos"]):
             if int(item.get("id", 0)) != task_id:
                 continue
-            if bool(item.get("done", False)):
-                raise TaskAlreadyDoneError("该待办任务已完成。")
-            item["done"] = True
-            item["done_at"] = _now_str()
+            removed = data["todos"].pop(index)
+            self._insert_free_id(data, task_id)
             self.store.save(data)
-            return {"kind": "todo", "id": task_id, "name": str(item.get("name", ""))}
+            return {"kind": "todo", "id": task_id, "name": str(removed.get("name", ""))}
 
         for item in data["daily_tasks"]:
             if int(item.get("id", 0)) != task_id:
@@ -206,4 +204,3 @@ class TaskService:
             "pending_todo": len(listed["todos"]),
             "pending_items": pending_items[:limit],
         }
-

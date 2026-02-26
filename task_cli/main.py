@@ -84,7 +84,7 @@ def _run(args: argparse.Namespace, parser: argparse.ArgumentParser, service: Tas
         if result["kind"] == "daily":
             print(f"已完成今日每日任务 #{result['id']}：{result['name']}")
         else:
-            print(f"已完成待办任务 #{result['id']}：{result['name']}")
+            print(f"已完成并移除待办任务 #{result['id']}：{result['name']}")
         return 0
 
     if command == "delete":
@@ -112,4 +112,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -62,6 +62,32 @@ class TaskCliTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("task daily add <任务名>", result.stdout)
 
+    def test_done_todo_removes_task_and_reuses_id(self) -> None:
+        added = self.run_cli("add", "A")
+        self.assertEqual(added.returncode, 0, added.stderr)
+        task_id = _extract_id(added.stdout)
+        self.assertEqual(task_id, 1)
+
+        done = self.run_cli("done", "1")
+        self.assertEqual(done.returncode, 0, done.stderr)
+        self.assertIn("已完成并移除待办任务 #1", done.stdout)
+
+        listed = self.run_cli("list")
+        self.assertEqual(listed.returncode, 0, listed.stderr)
+        self.assertNotIn("[ ] 1 A", listed.stdout)
+
+        added_again = self.run_cli("add", "B")
+        self.assertEqual(added_again.returncode, 0, added_again.stderr)
+        self.assertEqual(_extract_id(added_again.stdout), 1)
+
+    def test_list_headers_include_icons(self) -> None:
+        self.run_cli("add", "A")
+        self.run_cli("daily", "add", "D")
+        listed = self.run_cli("list")
+        self.assertEqual(listed.returncode, 0, listed.stderr)
+        self.assertIn("📅 每日任务", listed.stdout)
+        self.assertIn("📝 待办列表", listed.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

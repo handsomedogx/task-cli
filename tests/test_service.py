@@ -124,7 +124,21 @@ class TaskServiceIdRecycleTests(unittest.TestCase):
         self.assertEqual(used_ids, [1, 2, 3])
         self.assertEqual(data["free_ids"], [])
 
+    def test_done_todo_removes_task_and_recycles_id(self) -> None:
+        todo = self.service.add_todo("一次性任务")
+        self.assertEqual(todo["id"], 1)
+
+        result = self.service.mark_done(1)
+        self.assertEqual(result["kind"], "todo")
+        self.assertEqual(result["id"], 1)
+
+        data = self.store.load()
+        self.assertEqual(data["todos"], [])
+        self.assertEqual(data["free_ids"], [1])
+
+        reused = self.service.add_todo("新任务")
+        self.assertEqual(reused["id"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()
-
