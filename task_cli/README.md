@@ -51,10 +51,20 @@
 
 ## 本地开发
 
-安装可编辑模式：
+推荐（使用 uv）：
 
 ```bash
-python3 -m pip install --user -e .
+uv venv
+source .venv/bin/activate
+uv pip install -e .
+```
+
+备选（标准 venv）：
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -e .
 ```
 
 运行测试：

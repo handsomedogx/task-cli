@@ -9,22 +9,37 @@
 
 - Python 3.10+
 
-## 安装（全局 Python 环境）
+## 安装（推荐）
 
 在项目根目录执行：
 
 ```bash
-python3 -m pip install --user -e .
+uv tool install --from . task-cli
 ```
 
-如果你的 Python 没有 `pip` 模块，先执行：
+验证安装：
 
 ```bash
-python3 -m ensurepip --upgrade
-python3 -m pip install --user -e .
+task -h
 ```
 
-安装后如果 `task` 命令找不到，请把 `~/.local/bin` 加到 `PATH`。
+如果提示找不到 `task`，请将 `~/.local/bin` 加入 `PATH`：
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+## 备选安装（虚拟环境）
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -e .
+task -h
+```
+
+说明：在 Arch Linux 等启用 PEP 668 的系统中，`python3 -m pip install --user ...` 可能被禁止，优先使用上面的 `uv tool` 或虚拟环境方案。
 
 ## 快速开始
 
@@ -82,4 +97,3 @@ task delete <id>         # 删除任务（硬删除）
 ```bash
 python3 -m unittest discover -s tests -v
 ```
-
