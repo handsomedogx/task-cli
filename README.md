@@ -41,6 +41,24 @@ task -h
 
 说明：在 Arch Linux 等启用 PEP 668 的系统中，`python3 -m pip install --user ...` 可能被禁止，优先使用上面的 `uv tool` 或虚拟环境方案。
 
+## 卸载
+
+如果你使用 `uv tool` 安装：
+
+```bash
+uv tool uninstall task-cli
+```
+
+如果你在虚拟环境中通过 `pip install -e .` 安装：
+
+```bash
+source .venv/bin/activate
+python3 -m pip uninstall task-cli
+deactivate
+```
+
+说明：卸载命令不会删除任务数据文件（`~/.task/tasks.json`）。
+
 ## 快速开始
 
 ```bash

@@ -68,6 +68,20 @@ source .venv/bin/activate
 python3 -m pip install -e .
 ```
 
+## 卸载（开发环境）
+
+```bash
+source .venv/bin/activate
+python3 -m pip uninstall task-cli
+deactivate
+```
+
+如需清理本地虚拟环境目录，可额外执行：
+
+```bash
+rm -rf .venv
+```
+
 运行测试：
 
 ```bash
