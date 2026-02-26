@@ -57,7 +57,11 @@ class TaskCliTests(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertIn("未找到该任务 ID", result.stderr)
 
+    def test_root_output_includes_daily_add_hint(self) -> None:
+        result = self.run_cli()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("task daily add <任务名>", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()
-

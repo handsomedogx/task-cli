@@ -40,5 +40,10 @@ def render_root(help_text: str, summary: dict[str, Any]) -> str:
             lines.append(f"- [{task_type}] {item['id']} {item['name']}")
     else:
         lines.append("- 当前没有未完成任务。")
+    lines.append("")
+    lines.append("常用命令:")
+    lines.append("- 添加每日任务: task daily add <任务名>")
+    lines.append("- 添加待办任务: task add <任务名>")
+    lines.append("- 查看任务列表: task list")
+    lines.append("- 完成任务: task done <id>")
     return "\n".join(lines)
-
