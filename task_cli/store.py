@@ -10,7 +10,7 @@ DEFAULT_VERSION = 2
 
 
 def default_data_path() -> Path:
-    return Path.home() / ".task" / "tasks.json"
+    return Path.home() / ".local" / "share" / "task-cli" / "tasks.json"
 
 
 def default_state() -> dict[str, Any]:
@@ -96,4 +96,3 @@ class TaskStore:
             json.dump(normalized, file, indent=2, ensure_ascii=False)
             file.write("\n")
         os.replace(temp_path, self.path)
-

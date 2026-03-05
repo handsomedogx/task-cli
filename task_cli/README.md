@@ -11,7 +11,7 @@
 
 ## 数据模型
 
-默认文件：`~/.task/tasks.json`
+默认文件：`~/.local/share/task-cli/tasks.json`
 
 ```json
 {

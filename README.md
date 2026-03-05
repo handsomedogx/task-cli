@@ -57,7 +57,7 @@ python3 -m pip uninstall task-cli
 deactivate
 ```
 
-说明：卸载命令不会删除任务数据文件（`~/.task/tasks.json`）。
+说明：卸载命令不会删除任务数据文件（`~/.local/share/task-cli/tasks.json`）。
 
 ## 快速开始
 
@@ -95,7 +95,7 @@ task delete <id>         # 删除任务（硬删除）
 
 ## 数据文件
 
-- 默认路径：`~/.task/tasks.json`
+- 默认路径：`~/.local/share/task-cli/tasks.json`
 - 当前数据版本：`version = 2`
 - 包含字段：`next_id`、`free_ids`、`todos`、`daily_tasks`
 
